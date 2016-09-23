@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+status=$(docker-machine status consul)
+
+if [[ $status != "Running" ]]
+  then
+    echo -e "Docker host demo1 not running, starting new host..."
+    docker-machine create consul --driver virtualbox
+fi
+
+eval $(docker-machine env consul)
+
+export DOCKER_IP=$(docker-machine ip consul)
+
+docker-compose up -d

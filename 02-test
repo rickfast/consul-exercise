@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -e
+
+for i in `seq 1 10000`;
+do
+    curl --fail "http://localhost:8080/data"
+    echo ""
+done
+
+echo 'Success!'
